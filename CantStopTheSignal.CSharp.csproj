@@ -81,6 +81,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\DoorMove.cs" />
     <Compile Include="Assets\Scripts\PC_Movement.cs" />
     <Compile Include="Assets\Scripts\SwitchControl.cs" />
     <Compile Include="Assets\Scripts\WaypointMove.cs" />
