@@ -7,7 +7,6 @@ public class PC_Movement : MonoBehaviour {
     public float linearSpeed = 10.0f;
     public float angularSpeed = 180.0f;
     public float accelerationTime = 0.25f;
-    public float accelerationMod = 5.0f;
 
     public bool lockRotation = false;
 
@@ -27,9 +26,14 @@ public class PC_Movement : MonoBehaviour {
 
         Vector2 targetVelocity = new Vector2(hMovement, vMovement).normalized * linearSpeed;
 
-        targetVelocity = Vector2.MoveTowards(localbody.velocity, targetVelocity, Time.deltaTime * acceleration * accelerationMod);
+        targetVelocity = Vector2.MoveTowards(localbody.velocity, targetVelocity, Time.deltaTime * acceleration);
 
         localbody.velocity = targetVelocity;
         
+    }
+
+    public void Halt()
+    {
+        localbody.velocity = Vector2.zero;
     }
 }
