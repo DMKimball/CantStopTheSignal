@@ -4,50 +4,47 @@ using UnityEngine;
 
 public class SwitchControl : MonoBehaviour {
 
-    private const string camName = "CameraHolder";
-    private static SwitchControl currentController;
-    private static float speed = 50.0f;
-
-    private GameObject cam;
+    public float speed = 50.0f;
+    
     private bool adjustingCamera = false;
-    private Vector3 camStartPos;
-    public PC_Movement pc_move;
+    private Vector3 startPos;
+    private PC_Movement pc_move;
+    private WaypointMove wp_move;
 
 	// Use this for initialization
 	void Start () {
-        if (cam == null) cam = GameObject.Find(camName);
-		if (transform.FindChild(camName)) currentController = this;
-        
-        pc_move = GetComponent<PC_Movement>();
+        pc_move = GetComponentInParent<PC_Movement>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		if(adjustingCamera)
         {
-            float progress = 1.0f - (cam.transform.localPosition.magnitude - speed * Time.deltaTime) / camStartPos.magnitude;
-            Vector3 newPos = Vector3.Lerp(camStartPos, Vector3.zero, progress);
-            cam.transform.localPosition = newPos;
+            float progress = 1.0f - (transform.localPosition.magnitude - speed * Time.deltaTime) / startPos.magnitude;
+            Vector3 newPos = Vector3.Lerp(startPos, Vector3.zero, progress);
+            transform.localPosition = newPos;
             if(newPos == Vector3.zero)
             {
                 adjustingCamera = false;
                 pc_move.enabled = true;
+                if (wp_move) wp_move.enabled = true;
+                wp_move = GetComponentInParent<WaypointMove>();
             }
         }
 	}
 
-    public void PassControl(SwitchControl newController)
+    public void PassControl(GameObject newController)
     {
-        if (currentController == this)
+        if (pc_move)
         {
-            currentController = newController;
-            cam.transform.parent = newController.gameObject.transform;
-            newController.adjustingCamera = true;
-            newController.cam = cam;
-            newController.camStartPos = cam.transform.localPosition;
             pc_move.Halt();
             pc_move.enabled = false;
-            cam = null;
         }
+        WaypointMove targetMovement = newController.GetComponent<WaypointMove>();
+        if (targetMovement) targetMovement.enabled = false;
+        transform.parent = newController.gameObject.transform;
+        adjustingCamera = true;
+        startPos = transform.localPosition;
+        pc_move = GetComponentInParent<PC_Movement>();
     }
 }

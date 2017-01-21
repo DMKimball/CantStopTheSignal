@@ -8,8 +8,6 @@ public class PC_Movement : MonoBehaviour {
     public float angularSpeed = 180.0f;
     public float accelerationTime = 0.25f;
 
-    public bool lockRotation = false;
-
     private Rigidbody2D localbody;
     private float acceleration;
 

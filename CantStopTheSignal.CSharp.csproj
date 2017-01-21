@@ -83,6 +83,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\PC_Movement.cs" />
     <Compile Include="Assets\Scripts\SwitchControl.cs" />
+    <Compile Include="Assets\Scripts\WaypointMove.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>
