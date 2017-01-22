@@ -12,9 +12,13 @@ public class PC_Movement : MonoBehaviour {
     private Rigidbody2D localbody;
     private float acceleration;
 
-	// Use this for initialization
-	void Start () {
+    void Awake()
+    {
         localbody = GetComponent<Rigidbody2D>();
+    }
+
+    // Use this for initialization
+    void Start () {
         if (accelerationTime != 0) acceleration = linearSpeed / accelerationTime;
         else acceleration = float.PositiveInfinity;
 	}

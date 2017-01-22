@@ -10,6 +10,6 @@ public class Controllable : MonoBehaviour, Interactable {
     {
         if (secure) return;
         SwitchControl controller = interactor.GetComponentInChildren<SwitchControl>();
-        controller.PassControl(gameObject);
+        if(controller) controller.PassControl(gameObject);
     }
 }

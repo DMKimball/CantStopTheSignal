@@ -54,7 +54,7 @@ public class RemoteInteractor : MonoBehaviour
     public void EnableInteraction()
     {
         enabled = true;
-        if(pc_move) pc_move.enabled = true;
+        if (pc_move) pc_move.enabled = true;
         if (p_jump) p_jump.enabled = true;
         meshRender.enabled = true;
     }
