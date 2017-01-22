@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -30,6 +31,11 @@ public class GameManager : MonoBehaviour
 
     void InitGame()
     {
+    }
+
+    public void InitLevel()
+    {
+        SceneManager.LoadScene("Stephen");
         InitPlayerHealth();
     }
 
@@ -53,6 +59,6 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
-
+        SceneManager.LoadScene("Game Over");
     }
 }
