@@ -13,10 +13,14 @@ public class SwitchControl : MonoBehaviour {
     private WaypointMove wp_move;
     private Interactor interactor;
 
+    private DeviceState oldState;
+    private ChangeEmission emitter;
+
 	// Use this for initialization
 	void Start () {
         pc_move = GetComponentInParent<PC_Movement>();
         wp_move = GetComponentInParent<WaypointMove>();
+        emitter = GetComponentInParent<ChangeEmission>();
         interactor = GetComponentInParent<Interactor>();
         if (interactor != null) interactor.EnableInteraction();
     }
@@ -34,6 +38,8 @@ public class SwitchControl : MonoBehaviour {
                 if(pc_move) pc_move.enabled = true;
                 if (wp_move) wp_move.enabled = true;
                 wp_move = GetComponentInParent<WaypointMove>();
+                oldState = emitter.getState();
+                emitter.ChangeToNewState(DeviceState.player);
             }
         }
 	}
@@ -48,11 +54,13 @@ public class SwitchControl : MonoBehaviour {
         if (interactor != null) interactor.DisableInteraction();
         WaypointMove targetMovement = newController.GetComponent<WaypointMove>();
         if (targetMovement) targetMovement.enabled = false;
+        emitter.ChangeToNewState(oldState);
         transform.parent = newController.gameObject.transform;
         adjustingCamera = true;
         startPos = transform.localPosition;
         pc_move = GetComponentInParent<PC_Movement>();
         interactor = GetComponentInParent<Interactor>();
+        emitter = GetComponentInParent<ChangeEmission>();
         StartCoroutine("DelayInteraction");
     }
 
@@ -61,4 +69,6 @@ public class SwitchControl : MonoBehaviour {
         yield return new WaitForSeconds(interactorDowntime);
         if(interactor != null) interactor.EnableInteraction();
     }
+
+    public void Hacked() { oldState = DeviceState.evil;  }
 }
