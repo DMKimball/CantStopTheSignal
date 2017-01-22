@@ -8,11 +8,11 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance = null;
 
-    public int maxHealth = 100;
+    public float maxHealth = 100f;
     public Slider healthSlider;
 
     [SerializeField]
-    private int _currHealth;
+    private float _currHealth;
 
     private int level = 3;
 
@@ -45,7 +45,7 @@ public class GameManager : MonoBehaviour
         healthSlider.value = _currHealth;
     }
 
-    public void LoseHealth(int amount)
+    public void LoseHealth(float amount)
     {
         _currHealth = Mathf.Clamp(_currHealth - amount, 0, maxHealth);
 
