@@ -5,16 +5,21 @@ using UnityEngine;
 public class SwitchControl : MonoBehaviour {
 
     public float speed = 50.0f;
+    public float interactorDowntime = 1.0f;
     
     private bool adjustingCamera = false;
     private Vector3 startPos;
     private PC_Movement pc_move;
     private WaypointMove wp_move;
+    private Interactor interactor;
 
 	// Use this for initialization
 	void Start () {
         pc_move = GetComponentInParent<PC_Movement>();
-	}
+        wp_move = GetComponentInParent<WaypointMove>();
+        interactor = GetComponentInParent<Interactor>();
+        if (interactor != null) interactor.EnableInteraction();
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -26,13 +31,13 @@ public class SwitchControl : MonoBehaviour {
             if(newPos == Vector3.zero)
             {
                 adjustingCamera = false;
-                pc_move.enabled = true;
+                if(pc_move) pc_move.enabled = true;
                 if (wp_move) wp_move.enabled = true;
                 wp_move = GetComponentInParent<WaypointMove>();
             }
         }
 	}
-
+        
     public void PassControl(GameObject newController)
     {
         if (pc_move)
@@ -40,11 +45,20 @@ public class SwitchControl : MonoBehaviour {
             pc_move.Halt();
             pc_move.enabled = false;
         }
+        if (interactor != null) interactor.DisableInteraction();
         WaypointMove targetMovement = newController.GetComponent<WaypointMove>();
         if (targetMovement) targetMovement.enabled = false;
         transform.parent = newController.gameObject.transform;
         adjustingCamera = true;
         startPos = transform.localPosition;
         pc_move = GetComponentInParent<PC_Movement>();
+        interactor = GetComponentInParent<Interactor>();
+        StartCoroutine("DelayInteraction");
+    }
+
+    IEnumerator DelayInteraction()
+    {
+        yield return new WaitForSeconds(interactorDowntime);
+        if(interactor != null) interactor.EnableInteraction();
     }
 }

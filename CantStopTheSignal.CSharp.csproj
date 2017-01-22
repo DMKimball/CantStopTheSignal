@@ -81,7 +81,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Controllable.cs" />
     <Compile Include="Assets\Scripts\DoorMove.cs" />
+    <Compile Include="Assets\Scripts\DroidInteractor.cs" />
+    <Compile Include="Assets\Scripts\Interactable.cs" />
+    <Compile Include="Assets\Scripts\Interactor.cs" />
     <Compile Include="Assets\Scripts\PC_Movement.cs" />
     <Compile Include="Assets\Scripts\SwitchControl.cs" />
     <Compile Include="Assets\Scripts\WaypointMove.cs" />
