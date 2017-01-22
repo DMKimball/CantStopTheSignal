@@ -41,10 +41,16 @@ public class PC_Movement : MonoBehaviour {
             if (rotation > 180) rotation -= 360;
             if (rotation < -180) rotation += 360;
 
-            Vector3[] childRotations = new Vector3[transform.childCount];
-            for(int i = 0; i < transform.childCount; i++)
+            Vector3 camRotation = Vector3.zero;
+            Transform child = null;
+            for (int i = 0; i < transform.childCount; i++)
             {
-                childRotations[i] = transform.GetChild(i).eulerAngles;
+                child = transform.GetChild(i);
+                if (child.tag == "Player")
+                {
+                    camRotation = child.eulerAngles;
+                    break;
+                }
             }
 
             if (rotation > 0)
@@ -56,10 +62,7 @@ public class PC_Movement : MonoBehaviour {
                 transform.Rotate(new Vector3(0, 0, Mathf.Max(-angularSpeed * Time.deltaTime, rotation)), Space.Self);
             }
 
-            for (int i = 0; i < transform.childCount; i++)
-            {
-                 transform.GetChild(i).eulerAngles = childRotations[i];
-            }
+            if(child) child.eulerAngles = camRotation;
 
 
         }

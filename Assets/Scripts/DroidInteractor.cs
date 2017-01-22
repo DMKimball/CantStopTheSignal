@@ -7,7 +7,6 @@ public class DroidInteractor : MonoBehaviour, Interactor
 {
 
     private Interactable interactionTarget;
-    private bool activelyInteract;
 
     // Use this for initialization
     void Start()
@@ -18,7 +17,7 @@ public class DroidInteractor : MonoBehaviour, Interactor
     // Update is called once per frame
     void Update()
     {
-        if (activelyInteract && interactionTarget != null && Input.GetAxis("Interact") != 0)
+        if (interactionTarget != null && Input.GetAxis("Interact") != 0)
         {
             interactionTarget.Interact(gameObject);
         }
@@ -38,11 +37,11 @@ public class DroidInteractor : MonoBehaviour, Interactor
 
     public void EnableInteraction()
     {
-        activelyInteract = true;
+        enabled = true;
     }
 
     public void DisableInteraction()
     {
-        activelyInteract = false;
+        enabled = false;
     }
 }
