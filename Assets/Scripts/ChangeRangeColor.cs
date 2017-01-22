@@ -54,21 +54,30 @@ public class ChangeRangeColor : MonoBehaviour
         switch (newState)
         {
             case Player:
+                debugChange = Player;
                 _meshRenderer.material = player;
                 if (hasChildren) _childMeshRenderer.material = playerPulse;
                 break;
             case Evil:
+                debugChange = Evil;
                 _meshRenderer.material = evil;
                 if (hasChildren) _childMeshRenderer.material = evilPulse;
                 break;
             case Available:
+                debugChange = Available;
                 _meshRenderer.material = available;
                 if (hasChildren) _childMeshRenderer.material = availablePulse;
                 break;
             case Secure:
+                debugChange = Secure;
                 _meshRenderer.material = secure;
                 if (hasChildren) _childMeshRenderer.material = securePulse;
                 break;
         }
+    }
+
+    public DeviceState GetState()
+    {
+        return debugChange;
     }
 }

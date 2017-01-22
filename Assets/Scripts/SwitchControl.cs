@@ -32,14 +32,23 @@ public class SwitchControl : MonoBehaviour {
             float progress = 1.0f - (transform.localPosition.magnitude - speed * Time.deltaTime) / startPos.magnitude;
             Vector3 newPos = Vector3.Lerp(startPos, Vector3.zero, progress);
             transform.localPosition = newPos;
-            if(newPos == Vector3.zero)
+            if (newPos == Vector3.zero)
             {
                 adjustingCamera = false;
-                if(pc_move) pc_move.enabled = true;
+                if (pc_move) pc_move.enabled = true;
                 if (wp_move) wp_move.enabled = true;
                 wp_move = GetComponentInParent<WaypointMove>();
+
                 oldState = emitter.getState();
                 emitter.ChangeToNewState(DeviceState.player);
+                if (transform.parent.parent) {
+                    ChangeRangeColor[] circles = transform.parent.parent.GetComponentsInChildren<ChangeRangeColor>();
+
+                    foreach (ChangeRangeColor circle in circles)
+                    {
+                        circle.ChangeToNewState(DeviceState.player);
+                    }
+                }
             }
         }
 	}
@@ -52,15 +61,30 @@ public class SwitchControl : MonoBehaviour {
             pc_move.enabled = false;
         }
         if (interactor != null) interactor.DisableInteraction();
+
         WaypointMove targetMovement = newController.GetComponent<WaypointMove>();
         if (targetMovement) targetMovement.enabled = false;
+
         emitter.ChangeToNewState(oldState);
+        if (transform.parent.parent)
+        {
+            ChangeRangeColor[] circles = transform.parent.parent.GetComponentsInChildren<ChangeRangeColor>();
+            Debug.Log(circles.Length);
+            foreach (ChangeRangeColor circle in circles)
+            {
+                circle.ChangeToNewState(oldState);
+            }
+        }
+
         transform.parent = newController.gameObject.transform;
+
         adjustingCamera = true;
+
         startPos = transform.localPosition;
         pc_move = GetComponentInParent<PC_Movement>();
         interactor = GetComponentInParent<Interactor>();
         emitter = GetComponentInParent<ChangeEmission>();
+
         StartCoroutine("DelayInteraction");
     }
 
