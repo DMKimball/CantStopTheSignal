@@ -6,7 +6,6 @@ public class EvilAI : MonoBehaviour
 {
 
     public static GameObject player;
-    public statis 
     public static float dps = 3.0f;
 
     public GameObject prefab;
