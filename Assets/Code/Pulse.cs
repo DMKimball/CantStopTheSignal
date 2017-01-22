@@ -28,9 +28,9 @@ public class Pulse : MonoBehaviour
     {
         foreach (var pulse in pulses)
         {
-            pulse.transform.localScale = Vector3.Lerp(_startSize, transform.localScale, currTime);
+            pulse.transform.localScale = Vector3.Lerp(_startSize, new Vector3(1, 1, 1), currTime);
             currTime += _scaleRate;
-            if (pulse.transform.localScale.sqrMagnitude >= transform.localScale.sqrMagnitude)
+            if (pulse.transform.localScale.sqrMagnitude == new Vector3(1,1,1).sqrMagnitude)
             {
                 pulse.transform.localScale = _startSize;
                 currTime = 0;
