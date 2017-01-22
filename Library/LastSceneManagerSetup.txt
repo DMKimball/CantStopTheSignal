@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/Stephen.unity
+- path: Assets/Scenes/Ranges.unity
   isLoaded: 1
   isActive: 1

@@ -21,6 +21,7 @@ public class LineRendererDottedLine : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        SetupLine();
     }
 
     void SetupLine()
@@ -32,7 +33,7 @@ public class LineRendererDottedLine : MonoBehaviour
         _lineRenderer.SetPosition(1, endPosition.position);
         _lineRenderer.startWidth = 0.5f;
         _lineRenderer.endWidth = 0.5f;
-        _lineRenderer.useWorldSpace = true;
+        _lineRenderer.useWorldSpace = false;
         _lineRenderer.material = lineMaterial;
     }
 }

@@ -11,7 +11,7 @@ public class Pulse : MonoBehaviour
     [SerializeField]
     [Range(0,1)]
     private float _scaleRate = 0.1f;
-
+    [SerializeField]
     private float currTime = 0;
 
     //void Start()
