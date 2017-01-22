@@ -97,6 +97,7 @@
     <Compile Include="Assets\Scripts\RemoteInteractor.cs" />
     <Compile Include="Assets\Scripts\RemoteInteractorAdapter.cs" />
     <Compile Include="Assets\Scripts\SwitchControl.cs" />
+    <Compile Include="Assets\Scripts\Tether.cs" />
     <Compile Include="Assets\Scripts\WaypointMove.cs" />
   </ItemGroup>
   <ItemGroup>

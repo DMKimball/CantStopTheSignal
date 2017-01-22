@@ -42,7 +42,7 @@ public class RemoteInteractor : MonoBehaviour
     public void OnTriggerEnter2D(Collider2D collider)
     {
         Interactable target = collider.gameObject.GetComponent<Interactable>();
-        if (target != null) interactionTarget = target;
+        if (target != null && collider.gameObject != master) interactionTarget = target;
     }
 
     public void OnTriggerExit2D(Collider2D collider)
