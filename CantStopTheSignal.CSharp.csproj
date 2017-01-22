@@ -52,9 +52,6 @@
     <Reference Include="UnityEngine">
       <HintPath>Library\UnityAssemblies\UnityEngine.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.Advertisements">
-      <HintPath>Library\UnityAssemblies\UnityEngine.Advertisements.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
     </Reference>
@@ -69,9 +66,6 @@
     </Reference>
     <Reference Include="UnityEngine.HoloLens">
       <HintPath>Library\UnityAssemblies\UnityEngine.HoloLens.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.Purchasing">
-      <HintPath>Library\UnityAssemblies\UnityEngine.Purchasing.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.VR">
       <HintPath>Library\UnityAssemblies\UnityEngine.VR.dll</HintPath>
@@ -89,13 +83,19 @@
     <Compile Include="Assets\Scripts\DoorMove.cs" />
     <Compile Include="Assets\Scripts\DroidAnimator.cs" />
     <Compile Include="Assets\Scripts\DroidInteractor.cs" />
+    <Compile Include="Assets\Scripts\EvilAI.cs" />
+    <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\Interactable.cs" />
     <Compile Include="Assets\Scripts\Interactor.cs" />
     <Compile Include="Assets\Scripts\PC_Movement.cs" />
+    <Compile Include="Assets\Scripts\PlayerGameOver.cs" />
+    <Compile Include="Assets\Scripts\PointJump.cs" />
     <Compile Include="Assets\Scripts\Pulse.cs" />
     <Compile Include="Assets\Scripts\RemoteInteractor.cs" />
     <Compile Include="Assets\Scripts\RemoteInteractorAdapter.cs" />
     <Compile Include="Assets\Scripts\SwitchControl.cs" />
+    <Compile Include="Assets\Scripts\Tether.cs" />
+    <Compile Include="Assets\Scripts\TimedSceneChange.cs" />
     <Compile Include="Assets\Scripts\WaypointMove.cs" />
   </ItemGroup>
   <ItemGroup>
