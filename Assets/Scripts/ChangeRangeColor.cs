@@ -24,6 +24,8 @@ public class ChangeRangeColor : MonoBehaviour
 
     public DeviceState debugChange;
 
+    public bool useDebug = false;
+
     public const DeviceState
         Player = DeviceState.player,
         Evil = DeviceState.evil,
@@ -41,7 +43,7 @@ public class ChangeRangeColor : MonoBehaviour
 
     void Update()
     {
-        ChangeToNewState(debugChange);
+        if(useDebug) ChangeToNewState(debugChange);
     }
 
     public void ChangeToNewState(DeviceState newState)

@@ -81,14 +81,22 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\ChangeLineColor.cs" />
+    <Compile Include="Assets\Scripts\ChangeRangeColor.cs" />
+    <Compile Include="Assets\Scripts\CircleMeshGenerator.cs" />
+    <Compile Include="Assets\Scripts\CircleMeshGenerator_EditorGUI.cs" />
     <Compile Include="Assets\Scripts\Controllable.cs" />
     <Compile Include="Assets\Scripts\DoorMove.cs" />
     <Compile Include="Assets\Scripts\DroidInteractor.cs" />
     <Compile Include="Assets\Scripts\Interactable.cs" />
     <Compile Include="Assets\Scripts\Interactor.cs" />
     <Compile Include="Assets\Scripts\PC_Movement.cs" />
+    <Compile Include="Assets\Scripts\Pulse.cs" />
     <Compile Include="Assets\Scripts\SwitchControl.cs" />
     <Compile Include="Assets\Scripts\WaypointMove.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Scripts\Shaders\Circle.shader" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>
