@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PointJump : MonoBehaviour {
 
+    public Transform StephenLine;
     public Transform[] waypoints = new Transform[0];
     public float jumpCooldown = 0.25f;
     public int currLocIndex = 0;
@@ -18,6 +19,13 @@ public class PointJump : MonoBehaviour {
     void Awake()
     {
         if (!player) player = GameObject.FindGameObjectWithTag("Player").transform;
+
+        for (int i=1; i<waypoints.Length; ++i)
+        {
+            Transform line = (Transform) Instantiate(StephenLine, new Vector3(0,0,0), Quaternion.identity);
+            line.GetComponent<LineRenderer>().SetPosition(0, transform.position);
+            line.GetComponent<LineRenderer>().SetPosition(1, waypoints[i].position);
+        }
     }
     
 
