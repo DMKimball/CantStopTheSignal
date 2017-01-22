@@ -75,6 +75,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\ChangeEmission.cs" />
     <Compile Include="Assets\Scripts\ChangeLineColor.cs" />
     <Compile Include="Assets\Scripts\ChangeRangeColor.cs" />
     <Compile Include="Assets\Scripts\CircleMeshGenerator.cs" />

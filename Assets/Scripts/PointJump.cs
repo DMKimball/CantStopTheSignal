@@ -61,7 +61,6 @@ public class PointJump : MonoBehaviour {
         }
         if (adjustingCamera)
         {
-            Debug.Log("adjustingCamera");
             float progress = 1.0f - (Vector3.Distance(transform.position,player.position) - cameraSpeed * Time.deltaTime) / totalDistance;
             player.position = Vector3.Lerp(player.position, transform.position, progress);
             if (player.position == transform.position)

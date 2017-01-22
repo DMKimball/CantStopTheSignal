@@ -17,7 +17,6 @@ public class EvilAI : MonoBehaviour
     private MeshRenderer meshRenderRange;
     private MeshRenderer meshRenderPulse;
     private ChangeRangeColor[] colorChanges;
-    private CircleCollider2D infectionArea;
     private float rad;
     private List<Collider2D> wiredTargets = new List<Collider2D>();
 
@@ -26,7 +25,6 @@ public class EvilAI : MonoBehaviour
     {
         meshRenderRange = GetComponent<MeshRenderer>();
         meshRenderPulse = GetComponentInChildren<MeshRenderer>();
-        infectionArea = GetComponent<CircleCollider2D>();
     }
 
     // Use this for initialization
@@ -41,7 +39,13 @@ public class EvilAI : MonoBehaviour
     {
         float scaleUp = Time.deltaTime * expansionRate;
         transform.localScale = new Vector3(transform.localScale.x + scaleUp, transform.localScale.y + scaleUp, transform.localScale.z);
-        if (player && Vector3.Distance(transform.position, player.transform.position) <= rad) GameManager.instance.LoseHealth(dps*Time.deltaTime);
+        //if (player && Vector3.Distance(transform.position, player.transform.position) <= rad) GameManager.instance.LoseHealth(dps*Time.deltaTime);
+
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, rad);
+        foreach (Collider2D c in colliders)
+        {
+            ResolveCollision(c);
+        }
     }
 
     public void Activate()
@@ -60,12 +64,10 @@ public class EvilAI : MonoBehaviour
                 if (!changer.name.Contains("EvilAI")) changer.ChangeToNewState(DeviceState.evil);
                 if (changer.transform.parent == transform.parent.parent) startRadius = changer.transform.localScale;
             }
-            rad = infectionArea.radius * Mathf.Max(startRadius.x, startRadius.y);
+            rad = Mathf.Max(startRadius.x, startRadius.y)/2;
             Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, rad);
-            Debug.Log(colliders.Length + " " + rad);
             foreach (Collider2D c in colliders)
             {
-                Debug.Log(c.name);
                 ResolveCollision(c);
             }
         } else if(wiredTargets.Count > 0)
@@ -75,12 +77,16 @@ public class EvilAI : MonoBehaviour
                 ResolveCollision(coll);
             }
         }
+        ChangeEmission emitter = GetComponentInParent<ChangeEmission>();
+        if (emitter.getState() == DeviceState.player)
+        {
+            player.GetComponent<SwitchControl>().Hacked();
+        }
+        else
+        {
+            emitter.ChangeToNewState(DeviceState.evil);
+        }
         enabled = true;
-    }
-
-    public void OnTriggerEnter2D(Collider2D collision)
-    {
-        ResolveCollision(collision);
     }
 
     private void ResolveCollision(Collider2D collision)
