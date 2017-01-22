@@ -77,7 +77,8 @@
   <ItemGroup>
     <Compile Include="Assets\Code\CircleMeshGenerator.cs" />
     <Compile Include="Assets\Code\CircleMeshGenerator_EditorGUI.cs" />
-    <Compile Include="Assets\Code\Range.cs" />
+    <Compile Include="Assets\Code\LineRendererDottedLine.cs" />
+    <Compile Include="Assets\Code\Pulse.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Code\Shaders\Circle.shader" />

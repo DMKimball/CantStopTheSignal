@@ -1,4 +1,4 @@
 sceneSetups:
-- path: C:/Users/Stephen/Dropbox/Archer/Assets/Scene/test.unity
+- path: Assets/Scenes/Stephen.unity
   isLoaded: 1
   isActive: 1
