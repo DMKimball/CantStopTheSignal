@@ -7,6 +7,7 @@ public class PC_Movement : MonoBehaviour {
     public float linearSpeed = 10.0f;
     public float angularSpeed = 180.0f;
     public float accelerationTime = 0.25f;
+    public bool immediateStop = false;
 
     private Rigidbody2D localbody;
     private float acceleration;
@@ -14,7 +15,8 @@ public class PC_Movement : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         localbody = GetComponent<Rigidbody2D>();
-        acceleration = linearSpeed / accelerationTime;
+        if (accelerationTime != 0) acceleration = linearSpeed / accelerationTime;
+        else acceleration = float.PositiveInfinity;
 	}
 	
 	// Update is called once per frame
@@ -24,7 +26,7 @@ public class PC_Movement : MonoBehaviour {
 
         Vector2 targetVelocity = new Vector2(xMovement, yMovement).normalized * linearSpeed;
 
-        targetVelocity = Vector2.MoveTowards(localbody.velocity, targetVelocity, Time.deltaTime * acceleration);
+        if (!immediateStop || targetVelocity != Vector2.zero) targetVelocity = Vector2.MoveTowards(localbody.velocity, targetVelocity, Time.deltaTime * acceleration);
 
         localbody.velocity = targetVelocity;
 
