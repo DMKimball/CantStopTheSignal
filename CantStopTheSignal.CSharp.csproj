@@ -92,6 +92,7 @@
     <Compile Include="Assets\Scripts\Interactable.cs" />
     <Compile Include="Assets\Scripts\Interactor.cs" />
     <Compile Include="Assets\Scripts\PC_Movement.cs" />
+    <Compile Include="Assets\Scripts\PointJump.cs" />
     <Compile Include="Assets\Scripts\Pulse.cs" />
     <Compile Include="Assets\Scripts\RemoteInteractor.cs" />
     <Compile Include="Assets\Scripts\RemoteInteractorAdapter.cs" />

@@ -9,10 +9,12 @@ public class RemoteInteractor : MonoBehaviour
     private Interactable interactionTarget;
     private MeshRenderer meshRender;
     private PC_Movement pc_move;
+    private PointJump p_jump;
 
     void Awake()
     {
         pc_move = GetComponent<PC_Movement>();
+        p_jump = GetComponent<PointJump>();
         meshRender = GetComponentInChildren<MeshRenderer>();
     }
 
@@ -52,14 +54,16 @@ public class RemoteInteractor : MonoBehaviour
     public void EnableInteraction()
     {
         enabled = true;
-        pc_move.enabled = true;
+        if(pc_move) pc_move.enabled = true;
+        if (p_jump) p_jump.enabled = true;
         meshRender.enabled = true;
     }
 
     public void DisableInteraction()
     {
         enabled = false;
-        pc_move.enabled = false;
+        if (pc_move) pc_move.enabled = false;
+        if (p_jump) p_jump.enabled = false;
         meshRender.enabled = false;
         transform.localPosition = Vector3.zero;
     }
