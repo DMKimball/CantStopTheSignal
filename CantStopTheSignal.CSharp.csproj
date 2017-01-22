@@ -90,6 +90,7 @@
     <Compile Include="Assets\Scripts\DroidAnimator.cs" />
     <Compile Include="Assets\Scripts\DroidInteractor.cs" />
     <Compile Include="Assets\Scripts\EvilAI.cs" />
+    <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\Interactable.cs" />
     <Compile Include="Assets\Scripts\Interactor.cs" />
     <Compile Include="Assets\Scripts\PC_Movement.cs" />
