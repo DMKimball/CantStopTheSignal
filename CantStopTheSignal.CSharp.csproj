@@ -87,6 +87,7 @@
     <Compile Include="Assets\Scripts\CircleMeshGenerator_EditorGUI.cs" />
     <Compile Include="Assets\Scripts\Controllable.cs" />
     <Compile Include="Assets\Scripts\DoorMove.cs" />
+    <Compile Include="Assets\Scripts\DroidAnimator.cs" />
     <Compile Include="Assets\Scripts\DroidInteractor.cs" />
     <Compile Include="Assets\Scripts\Interactable.cs" />
     <Compile Include="Assets\Scripts\Interactor.cs" />
