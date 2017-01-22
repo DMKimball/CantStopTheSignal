@@ -29,8 +29,7 @@ public class LineRendererDottedLine : MonoBehaviour
         _lineRenderer.sortingOrder = 5;
         _lineRenderer.numPositions = 2;
         _lineRenderer.SetPosition(0, startPosition.position);
-        _lineRenderer.SetPosition(1, startPosition.position + endPosition.position / 2);
-        _lineRenderer.SetPosition(2, endPosition.position);
+        _lineRenderer.SetPosition(1, endPosition.position);
         _lineRenderer.startWidth = 0.5f;
         _lineRenderer.endWidth = 0.5f;
         _lineRenderer.useWorldSpace = true;
