@@ -35,10 +35,13 @@ public class ChangeRangeColor : MonoBehaviour
     private MeshRenderer _meshRenderer;
     private MeshRenderer _childMeshRenderer;
 
+    private bool hasChildren = true;
+
     void Start()
     {
+        hasChildren = (transform.childCount != 0);
         _meshRenderer = GetComponent<MeshRenderer>();
-        _childMeshRenderer = transform.GetChild(0).GetComponent<MeshRenderer>();
+        if(hasChildren) _childMeshRenderer = transform.GetChild(0).GetComponent<MeshRenderer>();
     }
 
     void Update()
@@ -52,19 +55,19 @@ public class ChangeRangeColor : MonoBehaviour
         {
             case Player:
                 _meshRenderer.material = player;
-                _childMeshRenderer.material = playerPulse;
+                if (hasChildren) _childMeshRenderer.material = playerPulse;
                 break;
             case Evil:
                 _meshRenderer.material = evil;
-                _childMeshRenderer.material = evilPulse;
+                if (hasChildren) _childMeshRenderer.material = evilPulse;
                 break;
             case Available:
                 _meshRenderer.material = available;
-                _childMeshRenderer.material = availablePulse;
+                if (hasChildren) _childMeshRenderer.material = availablePulse;
                 break;
             case Secure:
                 _meshRenderer.material = secure;
-                _childMeshRenderer.material = securePulse;
+                if (hasChildren) _childMeshRenderer.material = securePulse;
                 break;
         }
     }

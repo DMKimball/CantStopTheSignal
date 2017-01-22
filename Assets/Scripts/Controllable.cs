@@ -6,6 +6,7 @@ public class Controllable : MonoBehaviour, Interactable {
 
 	public void Interact(GameObject interactor)
     {
-        interactor.GetComponentInChildren<SwitchControl>().PassControl(gameObject);
+        SwitchControl controller = interactor.GetComponentInChildren<SwitchControl>();
+        controller.PassControl(gameObject);
     }
 }
