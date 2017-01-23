@@ -6,6 +6,9 @@ public class SwitchControl : MonoBehaviour {
 
     public float speed = 50.0f;
     public float interactorDowntime = 1.0f;
+
+    public AudioSource audioSource;
+    public AudioClip[] transferSFX;
     
     private bool adjustingCamera = false;
     private Vector3 startPos;
@@ -83,6 +86,11 @@ public class SwitchControl : MonoBehaviour {
         startPos = transform.localPosition;
         pc_move = GetComponentInParent<PC_Movement>();
         interactor = GetComponentInParent<Interactor>();
+
+        if (audioSource.isPlaying) return; // don't play a new sound while the last hasn't finished
+        audioSource.clip = transferSFX[Random.Range(0, 1)];
+        audioSource.Play();
+
         emitter = GetComponentInParent<ChangeEmission>();
 
         StartCoroutine("DelayInteraction");
