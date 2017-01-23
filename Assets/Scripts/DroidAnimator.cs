@@ -7,6 +7,9 @@ public class DroidAnimator : MonoBehaviour {
     public Rigidbody2D localbody;
     public Animation anim;
 
+    public AudioSource audioSource;
+    public AudioClip walkSFX;
+
     private bool atRest;
 
 
@@ -38,11 +41,15 @@ public class DroidAnimator : MonoBehaviour {
             }
             else
             {
+                if (audioSource.isPlaying) return; // don't play a new sound while the last hasn't finished
+                audioSource.clip = walkSFX;
+                audioSource.Play();
                 anim.Play("Walk");
             }
         }
         else
         {
+            audioSource.Stop();
             if (!atRest)
             {
                 anim.Play("TransformToBall");

@@ -77,6 +77,15 @@ public class EvilAI : MonoBehaviour
                 ResolveCollision(coll);
             }
         }
+        ChangeEmission emitter = GetComponentInParent<ChangeEmission>();
+        if (emitter.getState() == DeviceState.player)
+        {
+            player.GetComponent<SwitchControl>().Hacked();
+        }
+        else
+        {
+            emitter.ChangeToNewState(DeviceState.evil);
+        }
         enabled = true;
     }
 

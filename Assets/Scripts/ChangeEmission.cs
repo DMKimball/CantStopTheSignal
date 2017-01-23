@@ -15,25 +15,55 @@ public class ChangeEmission : MonoBehaviour {
     public Material secureEmit;
     public Material evilEmit;
 
+    public DeviceState state = Available;
+
     public Renderer rd;
     public int rdMat;
 
     public void ChangeToNewState(DeviceState newState)
     {
+        Material[] newMats;
         switch (newState)
         {
             case Player:
-                rd.materials[rdMat] = playerEmit;
+                newMats = new Material[rd.materials.Length];
+                for(int i = 0; i < newMats.Length; i++)
+                {
+                    if (i == rdMat) newMats[i] = playerEmit;
+                    else newMats[i] = rd.materials[i];
+                }
+                rd.materials = newMats;
+                state = Player;
                 break;
             case Evil:
-                rd.materials[rdMat] = evilEmit;
+                newMats = new Material[rd.materials.Length];
+                for (int i = 0; i < newMats.Length; i++)
+                {
+                    if (i == rdMat) newMats[i] = evilEmit;
+                    else newMats[i] = rd.materials[i];
+                }
+                rd.materials = newMats; state = Evil;
                 break;
             case Available:
-                rd.materials[rdMat] = availableEmit;
+                newMats = new Material[rd.materials.Length];
+                for (int i = 0; i < newMats.Length; i++)
+                {
+                    if (i == rdMat) newMats[i] = availableEmit;
+                    else newMats[i] = rd.materials[i];
+                }
+                rd.materials = newMats; state = Available;
                 break;
             case Secure:
-                rd.materials[rdMat] = secureEmit;
+                newMats = new Material[rd.materials.Length];
+                for (int i = 0; i < newMats.Length; i++)
+                {
+                    if (i == rdMat) newMats[i] = secureEmit;
+                    else newMats[i] = rd.materials[i];
+                }
+                rd.materials = newMats; state = Secure;
                 break;
         }
     }
+
+    public DeviceState getState() { return state; }
 }
