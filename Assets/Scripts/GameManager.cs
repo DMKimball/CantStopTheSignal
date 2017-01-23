@@ -35,7 +35,7 @@ public class GameManager : MonoBehaviour
 
     public void InitLevel()
     {
-        SceneManager.LoadScene("Stephen");
+        SceneManager.LoadScene("DemoLevel2");
         InitPlayerHealth();
     }
 
