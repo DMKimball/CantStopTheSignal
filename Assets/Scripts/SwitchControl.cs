@@ -49,7 +49,7 @@ public class SwitchControl : MonoBehaviour {
 
                     foreach (ChangeRangeColor circle in circles)
                     {
-                        circle.ChangeToNewState(DeviceState.player);
+                        if(circle.tag != "Evil") circle.ChangeToNewState(DeviceState.player);
                     }
                 }
             }
@@ -72,10 +72,9 @@ public class SwitchControl : MonoBehaviour {
         if (transform.parent.parent)
         {
             ChangeRangeColor[] circles = transform.parent.parent.GetComponentsInChildren<ChangeRangeColor>();
-            Debug.Log(circles.Length);
             foreach (ChangeRangeColor circle in circles)
             {
-                circle.ChangeToNewState(oldState);
+                if (circle.tag != "Evil") circle.ChangeToNewState(oldState);
             }
         }
 

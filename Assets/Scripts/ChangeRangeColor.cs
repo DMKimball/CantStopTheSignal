@@ -42,6 +42,7 @@ public class ChangeRangeColor : MonoBehaviour
         hasChildren = (transform.childCount != 0);
         _meshRenderer = GetComponent<MeshRenderer>();
         if(hasChildren) _childMeshRenderer = transform.GetChild(0).GetComponent<MeshRenderer>();
+        //ChangeToNewState(Available);
     }
 
     void Update()
